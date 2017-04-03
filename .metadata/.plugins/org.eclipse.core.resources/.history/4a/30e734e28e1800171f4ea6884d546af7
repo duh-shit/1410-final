@@ -17,18 +17,15 @@ import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.ListSelectionModel;
-import javax.swing.border.CompoundBorder;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 
 public class MainGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private String[] data = {"one", "two", "three", "four","five"};
+	private String[] data = {"one", "two", "three", "four"};
 	private JComboBox comboBox;
+	private JPanel bottomPanel;
+	private JTable table;
 	
 	Object[][] datao = {
 		    {"Kathy", "Smith",
@@ -42,8 +39,6 @@ public class MainGUI extends JFrame {
 		    {"Joe", "Brown",
 		     "Pool", new Integer(10), new Boolean(false)}
 		};
-	private JScrollPane scrollPane;
-	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -68,11 +63,11 @@ public class MainGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel topPanel = new JPanel();
-		topPanel.setBorder(null);
 		contentPane.add(topPanel, BorderLayout.NORTH);
 		
 		comboBox = new JComboBox();
@@ -92,12 +87,11 @@ public class MainGUI extends JFrame {
 		});
 		topPanel.add(searchButton);
 		
-		scrollPane = new JScrollPane();
-		contentPane.add(scrollPane, BorderLayout.CENTER);
+		bottomPanel = new JPanel();
+		contentPane.add(bottomPanel, BorderLayout.SOUTH);
 		
 		table = new JTable(datao,data);
-		scrollPane.setViewportView(table);
-
+		contentPane.add(table, BorderLayout.CENTER);
 		
 	}
 

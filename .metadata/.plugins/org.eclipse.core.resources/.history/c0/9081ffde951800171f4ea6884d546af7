@@ -93,6 +93,7 @@ public class MainGUI extends JFrame {
 		topPanel.add(searchButton);
 		
 		scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
 		table = new JTable(datao,data);

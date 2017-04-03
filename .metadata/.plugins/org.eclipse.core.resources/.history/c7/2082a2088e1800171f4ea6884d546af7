@@ -17,33 +17,14 @@ import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.ListSelectionModel;
-import javax.swing.border.CompoundBorder;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 
 public class MainGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private String[] data = {"one", "two", "three", "four","five"};
+	private String[] data = {"one", "two", "three", "four"};
+	private JList<String> list = new JList(data);
 	private JComboBox comboBox;
-	
-	Object[][] datao = {
-		    {"Kathy", "Smith",
-		     "Snowboarding", new Integer(5), new Boolean(false)},
-		    {"John", "Doe",
-		     "Rowing", new Integer(3), new Boolean(true)},
-		    {"Sue", "Black",
-		     "Knitting", new Integer(2), new Boolean(false)},
-		    {"Jane", "White",
-		     "Speed reading", new Integer(20), new Boolean(true)},
-		    {"Joe", "Brown",
-		     "Pool", new Integer(10), new Boolean(false)}
-		};
-	private JScrollPane scrollPane;
-	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -68,11 +49,11 @@ public class MainGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel topPanel = new JPanel();
-		topPanel.setBorder(null);
 		contentPane.add(topPanel, BorderLayout.NORTH);
 		
 		comboBox = new JComboBox();
@@ -87,17 +68,23 @@ public class MainGUI extends JFrame {
 		searchButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-
+				//System.out.println(textField.getText());
+				data[list.getSelectedIndex()]=textField.getText();
+				//list.update(getGraphics());
+				list.updateUI();
+				//list.setSelectedValue(textField.getText(), false);
 			}
 		});
 		topPanel.add(searchButton);
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+			}
+		});
 		
-		scrollPane = new JScrollPane();
-		contentPane.add(scrollPane, BorderLayout.CENTER);
 		
-		table = new JTable(datao,data);
-		scrollPane.setViewportView(table);
 
+		list.setVisibleRowCount(5);
+		contentPane.add(list, BorderLayout.CENTER);
 		
 	}
 
