@@ -82,7 +82,10 @@ public class MainGUI extends JFrame {
 		});
 		
 		
-
+<<<<<<< HEAD
+		
+=======
+>>>>>>> f852b66905c14066e18906d6d7031bf501d490d1
 		list.setVisibleRowCount(5);
 		contentPane.add(list, BorderLayout.CENTER);
 		
