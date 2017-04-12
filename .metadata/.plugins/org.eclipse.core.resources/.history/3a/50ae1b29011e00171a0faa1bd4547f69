@@ -9,7 +9,6 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.event.MouseAdapter;
@@ -66,7 +65,6 @@ public class MainGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MainGUI() {
-		Integer n = testDialog(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -83,7 +81,6 @@ public class MainGUI extends JFrame {
 		
 		textField = new JTextField();
 		topPanel.add(textField);
-		textField.setText(n.toString());
 		textField.setColumns(25);
 		
 		JButton searchButton = new JButton("New button");
@@ -102,32 +99,6 @@ public class MainGUI extends JFrame {
 		scrollPane.setViewportView(table);
 
 		
-	}
-	
-	public void processOption(int n)
-	{
-		switch(n)
-		{
-
-		}
-	}
-	
-	public int testDialog(JFrame frame)
-	{
-		Object[] options = {"Open Existing Database",
-                "New Empty Database",
-                "Quit"};
-		int n = JOptionPane.showOptionDialog(frame,
-		"Would you like some green eggs to go "
-		+ "with that ham?",
-		"A Silly Question",
-		JOptionPane.YES_NO_CANCEL_OPTION,
-		JOptionPane.QUESTION_MESSAGE,
-		null,
-		options,
-		options[2]);
-		
-		return n;
 	}
 
 }

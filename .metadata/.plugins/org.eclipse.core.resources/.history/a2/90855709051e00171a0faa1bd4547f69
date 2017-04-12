@@ -104,19 +104,11 @@ public class MainGUI extends JFrame {
 		
 	}
 	
-	public void processOption(int n)
-	{
-		switch(n)
-		{
-
-		}
-	}
-	
 	public int testDialog(JFrame frame)
 	{
-		Object[] options = {"Open Existing Database",
-                "New Empty Database",
-                "Quit"};
+		Object[] options = {"Yes, please",
+                "No, thanks",
+                "No eggs, no ham!"};
 		int n = JOptionPane.showOptionDialog(frame,
 		"Would you like some green eggs to go "
 		+ "with that ham?",

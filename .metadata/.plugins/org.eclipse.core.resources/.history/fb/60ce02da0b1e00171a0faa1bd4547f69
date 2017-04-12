@@ -104,14 +104,6 @@ public class MainGUI extends JFrame {
 		
 	}
 	
-	public void processOption(int n)
-	{
-		switch(n)
-		{
-
-		}
-	}
-	
 	public int testDialog(JFrame frame)
 	{
 		Object[] options = {"Open Existing Database",

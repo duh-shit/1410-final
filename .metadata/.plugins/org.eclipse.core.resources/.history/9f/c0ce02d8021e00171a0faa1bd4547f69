@@ -66,7 +66,7 @@ public class MainGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MainGUI() {
-		Integer n = testDialog(this);
+		testDialog(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -83,7 +83,6 @@ public class MainGUI extends JFrame {
 		
 		textField = new JTextField();
 		topPanel.add(textField);
-		textField.setText(n.toString());
 		textField.setColumns(25);
 		
 		JButton searchButton = new JButton("New button");
@@ -104,19 +103,11 @@ public class MainGUI extends JFrame {
 		
 	}
 	
-	public void processOption(int n)
-	{
-		switch(n)
-		{
-
-		}
-	}
-	
 	public int testDialog(JFrame frame)
 	{
-		Object[] options = {"Open Existing Database",
-                "New Empty Database",
-                "Quit"};
+		Object[] options = {"Yes, please",
+                "No, thanks",
+                "No eggs, no ham!"};
 		int n = JOptionPane.showOptionDialog(frame,
 		"Would you like some green eggs to go "
 		+ "with that ham?",
