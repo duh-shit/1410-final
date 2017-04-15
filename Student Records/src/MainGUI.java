@@ -66,7 +66,7 @@ public class MainGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MainGUI() {
-		Integer n = testDialog(this);
+		Integer n = testDialog(new JFrame());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -80,7 +80,7 @@ public class MainGUI extends JFrame {
 		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"eeeee", "jhgfjhgfj", "kjghkjghkh"}));
 		topPanel.add(comboBox);
-		
+		//
 		textField = new JTextField();
 		topPanel.add(textField);
 		textField.setText(n.toString());
