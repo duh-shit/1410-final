@@ -14,8 +14,11 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
@@ -30,6 +33,8 @@ public class MainGUI extends JFrame {
 	private JTextField textField;
 	private String[] data = {"one", "two", "three", "four","five"};
 	private JComboBox comboBox;
+	private final JFileChooser fc = new JFileChooser();
+	private File openFile;
 	
 	Object[][] datao = {
 		    {"Kathy", "Smith",
@@ -67,6 +72,7 @@ public class MainGUI extends JFrame {
 	 */
 	public MainGUI() {
 		Integer n = testDialog(new JFrame());
+		processOption(n);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -108,7 +114,12 @@ public class MainGUI extends JFrame {
 	{
 		switch(n)
 		{
-
+		case 0:
+			openFile = openFileChooser(fc); 
+			this.setTitle(openFile.toString());
+			break;
+		default:
+			break;
 		}
 	}
 	
@@ -128,6 +139,15 @@ public class MainGUI extends JFrame {
 		options[2]);
 		
 		return n;
+	}
+	
+	public File openFileChooser(JFileChooser fc)
+	{
+		int returnVal = fc.showOpenDialog(this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) 
+            return fc.getSelectedFile();
+		else 
+			return new File("");
 	}
 
 }
