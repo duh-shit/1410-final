@@ -12,6 +12,7 @@ public class Person {
     public Person(String fName, String lName, String courseTitle) {
        this.fName = fName;
        this.lName = lName;
+       this.courseTitle = courseTitle;
      idNumber = count++;
     }
     
