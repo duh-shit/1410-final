@@ -2,8 +2,8 @@ public class Person {
     private String fName;
     private String lName;
     private String courseTitle;
-    private int idNumber;   
-    private static int count = 1234567;
+    protected int idNumber;   
+    protected static int count = 1234567;
     
     public Person(){
        idNumber = count++;
