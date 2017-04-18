@@ -28,7 +28,7 @@ public class Person {
        return courseTitle;
     }
     
-    public int getIDNumber() {    
+    public Integer getIDNumber() {    
        return idNumber;
     }
     
@@ -37,6 +37,11 @@ public class Person {
        return getFirstName() +" " +getLastName() + " " +
              + getIDNumber() + "(Course(s): " + getCourse();
     }
+   
+	public String[] toStringArray()
+	{
+		return new String[]{getIDNumber().toString(), getFirstName(), getLastName(), getCourse()};
+	}
 
  }
 

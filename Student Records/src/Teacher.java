@@ -21,7 +21,7 @@ public class Teacher extends Person {
 		this.id = id;
 	}
 
-	public static ArrayList<Teacher> reader() throws IOException {
+	public static ArrayList<Person> reader() throws IOException {
 		
 		FileReader pw = new FileReader("src/record/teacherfile.dat");// sets file to be read
 		BufferedReader read = new BufferedReader(pw);// reads file
@@ -31,7 +31,7 @@ public class Teacher extends Person {
 		String lName = "";
 		String coarseTitle = "";
 		
-		ArrayList<Teacher> list = new ArrayList<Teacher>();
+		ArrayList<Person> list = new ArrayList<Person>();
 		while (true) {// loops threw and reads in each line of the file
 			String line = read.readLine();
 			if (line != null) {
@@ -55,13 +55,16 @@ public class Teacher extends Person {
 
 	@Override
 	public String toString() {
-		return String.format("%d\n%s %s\n %s\n", getID(), getFirstName(), getLastName(), getCourse());
+		return String.format("%d\n%s %s\n %s\n", getID(), getFirstName(), getLastName(), getCourse());	
 	}
 	
+	@Override
 	public String[] toStringArray()
 	{
 		return new String[]{getID().toString(), getFirstName(), getLastName(), getCourse()};
 	}
+	
+
 	
 	public static void main(String[] args) {// used to test to make sure working
 		try {
