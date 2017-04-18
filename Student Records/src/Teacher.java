@@ -49,7 +49,7 @@ public class Teacher extends Person {
 		return list;
 	}
 
-	public int getID() {// gets the teacher id from list
+	public Integer getID() {// gets the teacher id from list
 		return id;
 	}
 
@@ -57,7 +57,11 @@ public class Teacher extends Person {
 	public String toString() {
 		return String.format("%d\n%s %s\n %s\n", getID(), getFirstName(), getLastName(), getCourse());
 	}
-
+	
+	public String[] toStringArray()
+	{
+		return new String[]{getID().toString(), getFirstName(), getLastName(), getCourse()};
+	}
 	
 	public static void main(String[] args) {// used to test to make sure working
 		try {

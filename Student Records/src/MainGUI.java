@@ -33,7 +33,7 @@ public class MainGUI extends JFrame {
 	private JTextField textField;
 	private String[] data = {"one", "two", "three", "four","five"};
 	private JComboBox comboBox;
-	private final JFileChooser fc = new JFileChooser();
+	private static final JFileChooser fc = new JFileChooser();
 	private File openFile;
 	
 	Object[][] datao = {
@@ -115,7 +115,7 @@ public class MainGUI extends JFrame {
 		switch(n)
 		{
 		case 0:
-			openFile = openFileChooser(fc); 
+			openFile = openFileChooser(); 
 			this.setTitle(openFile.toString());
 			break;
 		default:
@@ -141,9 +141,9 @@ public class MainGUI extends JFrame {
 		return n;
 	}
 	
-	public File openFileChooser(JFileChooser fc)
+	public static File openFileChooser()
 	{
-		int returnVal = fc.showOpenDialog(this);
+		int returnVal = fc.showOpenDialog(new JFrame());
 		if (returnVal == JFileChooser.APPROVE_OPTION) 
             return fc.getSelectedFile();
 		else 
