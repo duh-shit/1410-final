@@ -15,6 +15,8 @@ import javax.swing.event.ListSelectionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
@@ -31,25 +33,14 @@ public class MainGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private String[] data = {"one", "two", "three", "four","five"};
-	private JComboBox comboBox;
+	private String[] catagoryHeader = {"S Number", "First", "Last", "Class"};
+	
 	private static final JFileChooser fc = new JFileChooser();
 	private File openFile;
-	
-	Object[][] datao = {
-		    {"Kathy", "Smith",
-		     "Snowboarding", new Integer(5), new Boolean(false)},
-		    {"John", "Doe",
-		     "Rowing", new Integer(3), new Boolean(true)},
-		    {"Sue", "Black",
-		     "Knitting", new Integer(2), new Boolean(false)},
-		    {"Jane", "White",
-		     "Speed reading", new Integer(20), new Boolean(true)},
-		    {"Joe", "Brown",
-		     "Pool", new Integer(10), new Boolean(false)}
-		};
+	Object[][] datao;
 	private JScrollPane scrollPane;
 	private JTable table;
+	private JButton btnAddNew;
 
 	/**
 	 * Launch the application.
@@ -58,6 +49,7 @@ public class MainGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+				
 					MainGUI frame = new MainGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -71,43 +63,46 @@ public class MainGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MainGUI() {
-		Integer n = testDialog(new JFrame());
-		processOption(n);
+		//Integer n = testDialog(new JFrame());
+		//processOption(n);
+		datao = new Object[1][4];
+		datao[0][0] = "";
+		datao[0][1] = "";
+		datao[0][2] = "";
+		datao[0][3] = "";
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
-		
-		JPanel topPanel = new JPanel();
-		topPanel.setBorder(null);
-		contentPane.add(topPanel, BorderLayout.NORTH);
-		
-		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"eeeee", "jhgfjhgfj", "kjghkjghkh"}));
-		topPanel.add(comboBox);
-		//
-		textField = new JTextField();
-		topPanel.add(textField);
-		textField.setText(n.toString());
-		textField.setColumns(25);
-		
-		JButton searchButton = new JButton("New button");
-		searchButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			
+			
+			setBounds(100, 100, 450, 300);
+			contentPane = new JPanel();
+			setContentPane(contentPane);
+			contentPane.setLayout(new BorderLayout(0, 0));
+			
+			JPanel topPanel = new JPanel();
+			topPanel.setBorder(null);
+			contentPane.add(topPanel, BorderLayout.NORTH);
+			
+			btnAddNew = new JButton("Add New");
+			topPanel.add(btnAddNew);
+			//
+			textField = new JTextField();
+			topPanel.add(textField);			
+			textField.setColumns(25);
+			
+			JButton searchButton = new JButton("New button");
+			searchButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+	
+				}
+			});
+			topPanel.add(searchButton);
+			
+			scrollPane = new JScrollPane();
+			contentPane.add(scrollPane, BorderLayout.CENTER);
+			table = new JTable(datao,catagoryHeader);
+			scrollPane.setViewportView(table);
 
-			}
-		});
-		topPanel.add(searchButton);
-		
-		scrollPane = new JScrollPane();
-		contentPane.add(scrollPane, BorderLayout.CENTER);
-		
-		table = new JTable(datao,data);
-		scrollPane.setViewportView(table);
-
-		
 	}
 	
 	public void processOption(int n)
@@ -118,7 +113,22 @@ public class MainGUI extends JFrame {
 			openFile = openFileChooser(); 
 			this.setTitle(openFile.toString());
 			break;
+		case 1:
+			ArrayList<Person> people;
+			try{	 people = new Teacher().reader();
+			System.out.println("win1");
+			}catch(Exception e){people = null;}
+			datao = getFormattedList(people);
+			break;
+		case 2:
+			//System.exit(0);
+			//break;
 		default:
+			datao = new Object[1][4];
+			datao[0][0] = "";
+			datao[0][1] = "";
+			datao[0][2] = "";
+			datao[0][3] = "";
 			break;
 		}
 	}
@@ -126,7 +136,7 @@ public class MainGUI extends JFrame {
 	public int testDialog(JFrame frame)
 	{
 		Object[] options = {"Open Existing Database",
-                "New Empty Database",
+                "Open Teacher Database",
                 "Quit"};
 		int n = JOptionPane.showOptionDialog(frame,
 		"Would you like some green eggs to go "
@@ -148,6 +158,20 @@ public class MainGUI extends JFrame {
             return fc.getSelectedFile();
 		else 
 			return new File("");
+	}
+	
+	public static Object[][] getFormattedList(ArrayList<Person> list)
+	{
+		Object[][] objects = new Object[list.size()][]; 
+		for(Person current : list)
+		{
+			objects[list.indexOf(current)] = current.toStringArray();
+			System.out.println("Read in person: " + Arrays.toString(objects[list.indexOf(current)]));
+			
+		}
+		System.out.println("win");
+		//System.out.println(objects);
+		return objects;
 	}
 
 }
