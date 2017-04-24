@@ -79,11 +79,7 @@ public class MainGUI extends JFrame {
 	public MainGUI() {
 		Integer n = openOptionDialog(new JFrame());
 		processOption(n);
-		openInputField("Bill Gate?");
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
-			
 			setBounds(100, 100, 600, 400);
 			contentPane = new JPanel();
 			setContentPane(contentPane);
@@ -152,7 +148,6 @@ public class MainGUI extends JFrame {
 			catagoryHeader[3] = "GPA";
 			datao = getFormattedList(people);
 			addNew.students = people;
-			updateTable();
 			break;
 		case 1:
 			try{	 people = Teacher.reader();
@@ -177,7 +172,7 @@ public class MainGUI extends JFrame {
 	
 	public static int openOptionDialog(JFrame frame)
 	{
-		Object[] options = {"Open Existing Database",
+		Object[] options = {"Open Existing Student Database",
                 "Open Teacher Database",
                 "Quit"};
 		int n = JOptionPane.showOptionDialog(frame,
