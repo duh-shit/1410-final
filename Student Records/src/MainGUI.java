@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -22,7 +23,9 @@ import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.CompoundBorder;
 import javax.swing.JScrollBar;
@@ -39,6 +42,7 @@ public class MainGUI extends JFrame {
 	private File openFile;
 	Object[][] datao;
 	private JScrollPane scrollPane;
+	private DefaultTableModel tableModel;
 	private JTable table;
 	private JButton btnAddNew;
 
@@ -63,13 +67,10 @@ public class MainGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MainGUI() {
-		//Integer n = testDialog(new JFrame());
-		//processOption(n);
-		datao = new Object[1][4];
-		datao[0][0] = "";
-		datao[0][1] = "";
-		datao[0][2] = "";
-		datao[0][3] = "";
+		Integer n = testDialog(new JFrame());
+		processOption(n);
+		openInputField("Bill Gate?");
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
 			
@@ -83,6 +84,15 @@ public class MainGUI extends JFrame {
 			contentPane.add(topPanel, BorderLayout.NORTH);
 			
 			btnAddNew = new JButton("Add New");
+			btnAddNew.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					addNew.addStudent();
+					datao = getFormattedList(addNew.students);
+					tableModel = new DefaultTableModel(datao,catagoryHeader);
+					table.setModel(tableModel);
+				}
+			});
 			topPanel.add(btnAddNew);
 			//
 			textField = new JTextField();
@@ -93,29 +103,38 @@ public class MainGUI extends JFrame {
 			searchButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-	
+					for(Object[] o : datao)
+					{
+						System.out.println(Arrays.toString(o));
+					}
 				}
 			});
 			topPanel.add(searchButton);
 			
 			scrollPane = new JScrollPane();
 			contentPane.add(scrollPane, BorderLayout.CENTER);
-			table = new JTable(datao,catagoryHeader);
+			table = new JTable();
+			table.putClientProperty("terminateEditOnFocusLost", true);
+			tableModel = new DefaultTableModel(datao,catagoryHeader);
+			table.setModel(tableModel);
 			scrollPane.setViewportView(table);
 
 	}
 	
 	public void processOption(int n)
 	{
+		ArrayList<Person> people;
 		switch(n)
 		{
 		case 0:
-			openFile = openFileChooser(); 
-			this.setTitle(openFile.toString());
+			try{	 people = Person.reader();
+			System.out.println("win1");
+			}catch(Exception e){break;}
+			datao = getFormattedList(people);
+			addNew.students = people;
 			break;
 		case 1:
-			ArrayList<Person> people;
-			try{	 people = new Teacher().reader();
+			try{	 people = Teacher.reader();
 			System.out.println("win1");
 			}catch(Exception e){people = null;}
 			datao = getFormattedList(people);
@@ -158,6 +177,11 @@ public class MainGUI extends JFrame {
             return fc.getSelectedFile();
 		else 
 			return new File("");
+	}
+	
+	public static String openInputField(String prompt)
+	{
+		return JOptionPane.showInputDialog(prompt);
 	}
 	
 	public static Object[][] getFormattedList(ArrayList<Person> list)
