@@ -5,29 +5,44 @@ import java.io.*;
 public class addNew extends Person{
 	Scanner input = new Scanner(System.in);
 	
-	public String fName;
-	public String lName;
-	public String gpa;
+	public static String fName;
+	public static String lName;
+	public static String gpa;
 	
-	ArrayList<Person> students = new ArrayList<Person>();
+	public static ArrayList<Person> students = new ArrayList<Person>();
 	
-	
-	public void addStudent(ArrayList<Person> array){
-		System.out.print("First Name: ");
-		input.nextLine();
-		fName = input.nextLine();
-		System.out.print("Last Name: ");
-		lName = input.nextLine();
-		System.out.print("GPA:");
-		gpa = input.nextLine();
-		Double.parseDouble(gpa);
-		System.out.println();
-		students.add(new Person(fName, lName, gpa));
+	public static boolean addStudent()
+	{
+		return addStudent(students);
+	}
+	public static boolean addStudent(ArrayList<Person> array){
+//		System.out.print("First Name: ");
+//		input.nextLine();
+//		fName = input.nextLine();
+//		System.out.print("Last Name: ");
+//		lName = input.nextLine();
+//		System.out.print("GPA:");
+//		gpa = input.nextLine();
+//		Double.parseDouble(gpa);
+//		System.out.println();
+//		
+		try
+		{
+			fName = MainGUI.openInputField("Please Enter First Name");
+			lName = MainGUI.openInputField("Please Enter Last Name");
+			gpa = MainGUI.openInputField("Please Enter GPA");
+			array.add(new Person(fName, lName, gpa));
+			return true;
+		}catch(Exception e)
+		{
+			return false;
+		}
 		
 	}
 	
-	public void createFile(String file, ArrayList<Person> arrData)
+	public static boolean createFile(String file, ArrayList<Person> arrData)
         throws IOException {
+		try{
 	        FileWriter writer = new FileWriter(file + ".txt");
 	        int size = arrData.size();
 	        for (int i=0;i<size;i++) {
@@ -36,9 +51,13 @@ public class addNew extends Person{
 	            	if(i < size-1)
 	            		//This prevent creating a blank like at the end of the file**
 	            		writer.write("\n");
+	        }
+	        writer.close();
+	            	return true;
+	        }catch(Exception e){return false;}
 	    }
-	    writer.close();
-    }
+	    
+    
 	
 
 	@Override

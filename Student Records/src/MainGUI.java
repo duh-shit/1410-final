@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -22,25 +23,38 @@ import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.CompoundBorder;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import java.awt.CardLayout;
+import javax.swing.BoxLayout;
+import javax.swing.JTree;
+import javax.swing.JMenuBar;
 
 public class MainGUI extends JFrame {
-
+	
+	private static boolean listEditable;
 	private JPanel contentPane;
 	private JTextField textField;
-	private String[] catagoryHeader = {"S Number", "First", "Last", "Class"};
+	private String[] catagoryHeader = {"S Number", "First", "Last", ""};
+	private String[] searchCatagories = {"By First Name","By Last Name","By S Number"};
 	
 	private static final JFileChooser fc = new JFileChooser();
 	private File openFile;
 	Object[][] datao;
 	private JScrollPane scrollPane;
+	private DefaultTableModel tableModel;
 	private JTable table;
 	private JButton btnAddNew;
+	private JPanel panel;
+	private JPanel panel_1;
+	private JComboBox comboBox;
+	private JButton searchButton;
 
 	/**
 	 * Launch the application.
@@ -63,17 +77,14 @@ public class MainGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MainGUI() {
-		//Integer n = testDialog(new JFrame());
-		//processOption(n);
-		datao = new Object[1][4];
-		datao[0][0] = "";
-		datao[0][1] = "";
-		datao[0][2] = "";
-		datao[0][3] = "";
+		Integer n = openOptionDialog(new JFrame());
+		processOption(n);
+		openInputField("Bill Gate?");
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
 			
-			setBounds(100, 100, 450, 300);
+			setBounds(100, 100, 600, 400);
 			contentPane = new JPanel();
 			setContentPane(contentPane);
 			contentPane.setLayout(new BorderLayout(0, 0));
@@ -81,43 +92,73 @@ public class MainGUI extends JFrame {
 			JPanel topPanel = new JPanel();
 			topPanel.setBorder(null);
 			contentPane.add(topPanel, BorderLayout.NORTH);
+			topPanel.setLayout(new BorderLayout(0, 0));
 			
-			btnAddNew = new JButton("Add New");
-			topPanel.add(btnAddNew);
-			//
-			textField = new JTextField();
-			topPanel.add(textField);			
-			textField.setColumns(25);
+			panel_1 = new JPanel();
+			topPanel.add(panel_1, BorderLayout.NORTH);
 			
-			JButton searchButton = new JButton("New button");
-			searchButton.addMouseListener(new MouseAdapter() {
+			JButton openDatabaseButton = new JButton("Open Another Database");
+			panel_1.add(openDatabaseButton);
+			openDatabaseButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-	
+					processOption(openOptionDialog(new JFrame()));
 				}
 			});
-			topPanel.add(searchButton);
+			
+			panel = new JPanel();
+			topPanel.add(panel, BorderLayout.SOUTH);
+			
+			btnAddNew = new JButton("Add New");
+			panel.add(btnAddNew);
+			//
+			textField = new JTextField();
+			panel.add(textField);
+			textField.setColumns(25);
+			
+			comboBox = new JComboBox(searchCatagories);
+			panel.add(comboBox);
+			
+			searchButton = new JButton("Search");
+			panel.add(searchButton);
+			btnAddNew.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					addNew.addStudent();
+					datao = getFormattedList(addNew.students);
+					tableModel = new DefaultTableModel(datao,catagoryHeader);
+					table.setModel(tableModel);
+				}
+			});
 			
 			scrollPane = new JScrollPane();
 			contentPane.add(scrollPane, BorderLayout.CENTER);
-			table = new JTable(datao,catagoryHeader);
+			table = new JTable();
+			table.putClientProperty("terminateEditOnFocusLost", true);
+			updateTable();
 			scrollPane.setViewportView(table);
 
 	}
 	
 	public void processOption(int n)
 	{
+		ArrayList<Person> people;
 		switch(n)
 		{
 		case 0:
-			openFile = openFileChooser(); 
-			this.setTitle(openFile.toString());
+			try{					
+			people = Person.reader();
+			}catch(Exception e){break;}
+			catagoryHeader[3] = "GPA";
+			datao = getFormattedList(people);
+			addNew.students = people;
+			updateTable();
 			break;
 		case 1:
-			ArrayList<Person> people;
-			try{	 people = new Teacher().reader();
+			try{	 people = Teacher.reader();
 			System.out.println("win1");
 			}catch(Exception e){people = null;}
+			catagoryHeader[3] = "Class";
 			datao = getFormattedList(people);
 			break;
 		case 2:
@@ -131,9 +172,10 @@ public class MainGUI extends JFrame {
 			datao[0][3] = "";
 			break;
 		}
+		
 	}
 	
-	public int testDialog(JFrame frame)
+	public static int openOptionDialog(JFrame frame)
 	{
 		Object[] options = {"Open Existing Database",
                 "Open Teacher Database",
@@ -160,6 +202,23 @@ public class MainGUI extends JFrame {
 			return new File("");
 	}
 	
+	public static String openInputField(String prompt)
+	{
+		return JOptionPane.showInputDialog(prompt);
+	}
+	
+	public void updateTable()
+	{
+		tableModel = new DefaultTableModel(datao,catagoryHeader);
+		table.setModel(tableModel);
+	}
+	
+	/**
+	 * 
+	 * @param list
+	 * 	The list of people to be formatted for display
+	 * @return Returns a multi-dimensional array of Objects so the table can display the list
+	 */
 	public static Object[][] getFormattedList(ArrayList<Person> list)
 	{
 		Object[][] objects = new Object[list.size()][]; 
@@ -169,8 +228,6 @@ public class MainGUI extends JFrame {
 			System.out.println("Read in person: " + Arrays.toString(objects[list.indexOf(current)]));
 			
 		}
-		System.out.println("win");
-		//System.out.println(objects);
 		return objects;
 	}
 
