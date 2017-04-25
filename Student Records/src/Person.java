@@ -102,7 +102,8 @@ public class Person
 		ArrayList<Person> list = new ArrayList<Person>();
 		while (true) {// loops threw and reads in each line of the file
 			String line = read.readLine();
-			if (line != null) {
+			if (line != null) 
+			{
 				id = Integer.parseInt(line);
 				fName = read.readLine();
 				lName = read.readLine();
@@ -122,15 +123,20 @@ public class Person
 	 * @see java.lang.Object#toString()
 	 */
    @Override
-   public String toString() {  
+   public String toString() 
+   {  
        return getFirstName() +" " +getLastName() + " " +
              + getIDNumber() + "(Course(s): " + getCourse();
     }
    
-	public String[] toStringArray()
-	{
-		return new String[]{getIDNumber().toString(), getFirstName(), getLastName(), getCourse()};
-	}
+   /*
+    * (non-Javadoc)
+	* @see java.lang.Object#toStringArray()
+    */
+   public String[] toStringArray()
+   {
+	   return new String[]{getIDNumber().toString(), getFirstName(), getLastName(), getCourse()};
+   }
 
 }
 	

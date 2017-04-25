@@ -195,20 +195,20 @@ public class MainGUI extends JFrame
 		case 0:
 			try
 			{					
-			currentList = Person.reader();
+				currentList = Person.reader();
 			}catch(Exception e){break;}
-			catagoryHeader[3] = "GPA";
-			datao = getFormattedList(currentList);
-			addNew.students = currentList;			
+				catagoryHeader[3] = "GPA";
+				datao = getFormattedList(currentList);
+				addNew.students = currentList;			
 			break;
 		case 1:
 			try
 			{	 
-			currentList = Teacher.reader();
+				currentList = Teacher.reader();
 			System.out.println("win1");
 			}catch(Exception e){currentList = null;}
-			catagoryHeader[3] = "Class";
-			datao = getFormattedList(currentList);
+				catagoryHeader[3] = "Class";
+				datao = getFormattedList(currentList);
 			break;
 		case 2:
 			//System.exit(0);
