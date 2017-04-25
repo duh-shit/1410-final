@@ -57,6 +57,35 @@ public class addNew extends Person{
 	        }catch(Exception e){return false;}
 	    }
 	    
+	public ArrayList<Person> searchFirstName(ArrayList<Person> fullList, String fName){
+		ArrayList<Person> searched = new ArrayList<Person>();
+		for(Person p : fullList){
+			if(p.getFirstName().contains(fName)){
+				searched.add(p);
+			}
+		}
+		return searched;
+	}
+	
+	public ArrayList<Person> searchLastName(ArrayList<Person> fullList, String lName){
+		ArrayList<Person> searched = new ArrayList<Person>();
+		for(Person p : fullList){
+			if(p.getLastName().contains(lName)){
+				searched.add(p);
+			}
+		}
+		return searched;
+	}
+	
+	public ArrayList<Person> searchSNumber(ArrayList<Person> fullList, Integer sNumber){
+		ArrayList<Person> searched = new ArrayList<Person>();
+		for(Person p : fullList){
+			if(p.getIDNumber() == sNumber){
+				searched.add(p);
+			}
+		}
+		return searched;
+	}
     
 	
 
