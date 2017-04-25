@@ -43,14 +43,18 @@ public class addNew extends Person{
 	public static boolean createFile(String file, ArrayList<Person> arrData)
         throws IOException {
 		try{
-	        FileWriter writer = new FileWriter(file + ".txt");
+	        FileWriter writer = new FileWriter(file);
 	        int size = arrData.size();
 	        for (int i=0;i<size;i++) {
-	            String str = arrData.get(i).toString();
-	            writer.write(str);
-	            	if(i < size-1)
-	            		//This prevent creating a blank like at the end of the file**
-	            		writer.write("\n");
+//	            String str = arrData.get(i).toString();
+//	            writer.write(str);
+//	            	if(i < size-1)
+//	            		writer.write("\n");
+            		//This prevent creating a blank like at the end of the file**
+	        	for(String s: arrData.get(i).toStringArray())
+	        	{
+	        		writer.write(s + "\n");
+	        	}
 	        }
 	        writer.close();
 	            	return true;

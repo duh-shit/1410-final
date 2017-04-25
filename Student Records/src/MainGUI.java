@@ -16,6 +16,7 @@ import javax.swing.event.ListSelectionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -36,7 +37,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JTree;
 import javax.swing.JMenuBar;
 
-public class MainGUI extends JFrame {
+public class MainGUI extends JFrame{
 	
 	private static boolean listEditable;
 	private JPanel contentPane;
@@ -55,6 +56,7 @@ public class MainGUI extends JFrame {
 	private JPanel panel_1;
 	private JComboBox comboBox;
 	private JButton searchButton;
+	private JButton btnSaveDatabase;
 
 	/**
 	 * Launch the application.
@@ -76,7 +78,7 @@ public class MainGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainGUI() {
+	public MainGUI(){
 		Integer n = openOptionDialog(new JFrame());
 		processOption(n);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,9 +94,24 @@ public class MainGUI extends JFrame {
 			
 			panel_1 = new JPanel();
 			topPanel.add(panel_1, BorderLayout.NORTH);
+			panel_1.setLayout(new BorderLayout(0, 0));
 			
 			JButton openDatabaseButton = new JButton("Open Another Database");
-			panel_1.add(openDatabaseButton);
+			panel_1.add(openDatabaseButton, BorderLayout.WEST);
+			
+			btnSaveDatabase = new JButton("Save Database");
+			btnSaveDatabase.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					try {
+						addNew.createFile(openFileChooser().toString(), addNew.students);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			});
+			panel_1.add(btnSaveDatabase, BorderLayout.EAST);
 			openDatabaseButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
