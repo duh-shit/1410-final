@@ -6,7 +6,7 @@ import java.io.*;
  * @authors Gabriel, Ryan Wheeler, Aidan Hubert, Daniel Silva, Jose??
  *
  */
-public class addNew extends Person
+public class LookupEdit extends Person
 {
 	
 	///////////////////////////////////////////////////////////////////////////////////
