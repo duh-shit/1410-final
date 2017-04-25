@@ -153,6 +153,12 @@ public class MainGUI extends JFrame{
 
 	}
 	
+	/**
+	 * This method receives input from the initial JOptionPane that is prompted
+	 * when the program is ran.
+	 * @param n
+	 * @see openOptionDialog()
+	 */
 	public void processOption(int n)
 	{
 		ArrayList<Person> people;
@@ -187,6 +193,14 @@ public class MainGUI extends JFrame{
 		
 	}
 	
+	/**
+	 * Creates the JOptionPane that asks the user whether they want to open
+	 * an existing database, open up the teacher database or quit. If the user 
+	 * chooses quit.
+	 * 
+	 * @param frame
+	 * @return
+	 */
 	public static int openOptionDialog(JFrame frame)
 	{
 		Object[] options = {"Open Existing Student Database",
@@ -205,6 +219,12 @@ public class MainGUI extends JFrame{
 		return n;
 	}
 	
+	/**
+	 * This method creates the file chooser so the end user can
+	 * select a file to upload it to the database.
+	 * 
+	 * @return
+	 */
 	public static File openFileChooser()
 	{
 		int returnVal = fc.showOpenDialog(new JFrame());
@@ -214,6 +234,12 @@ public class MainGUI extends JFrame{
 			return new File("");
 	}
 	
+	/**
+	 * Creates the input field for the dialog prompt.
+	 * 
+	 * @param prompt
+	 * @return
+	 */
 	public static String openInputField(String prompt)
 	{
 		return JOptionPane.showInputDialog(prompt);

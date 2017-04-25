@@ -15,12 +15,27 @@ public class Teacher extends Person {
 	public Teacher() {
 		super();
 	}
-
+	
+	/**
+	 * Constructor 
+	 * @param fName
+	 * @param lName
+	 * @param courseTitle
+	 * @param id
+	 */
 	public Teacher(String fName, String lName, String courseTitle, int id) {
 		super(fName, lName, courseTitle);
 		this.id = id;
 	}
-
+	
+	/**
+	 * This method reads in a .dat file that has all of our teacher information recorded on it
+	 * Once the rows are read in the method creates a Teacher object and adds it to the returning
+	 * ArrayList.
+	 * 
+	 * @return ArrayList<Person>
+	 * @throws IOException
+	 */
 	public static ArrayList<Person> reader() throws IOException {
 		
 		FileReader pw = new FileReader("src/record/teacherfile.dat");// sets file to be read
@@ -48,16 +63,28 @@ public class Teacher extends Person {
 		}
 		return list;
 	}
-
-	public Integer getID() {// gets the teacher id from list
+	
+	/**
+	 * Getter for teacher's ID
+	 * @return id
+	 */
+	public Integer getID() {
 		return id;
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see Person#toString()
+	 */
 	@Override
 	public String toString() {
 		return String.format("%d\n%s %s\n %s\n", getID(), getFirstName(), getLastName(), getCourse());	
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see Person#toStringArray()
+	 */
 	@Override
 	public String[] toStringArray()
 	{

@@ -40,6 +40,13 @@ public class addNew extends Person{
 		
 	}
 	
+	/**
+	 * 
+	 * @param file
+	 * @param arrData
+	 * @return
+	 * @throws IOException
+	 */
 	public static boolean createFile(String file, ArrayList<Person> arrData)
         throws IOException {
 		try{
