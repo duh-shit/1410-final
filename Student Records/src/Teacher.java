@@ -6,7 +6,6 @@ public class Teacher extends Person {
 	/**
 	 * Fields
 	 */
-	private int id;
 
 	/**
 	 * Constructors
@@ -25,7 +24,7 @@ public class Teacher extends Person {
 	 */
 	public Teacher(String fName, String lName, String courseTitle, int id) {
 		super(fName, lName, courseTitle);
-		this.id = id;
+		this.idNumber = id;
 	}
 	
 	/**
@@ -69,7 +68,7 @@ public class Teacher extends Person {
 	 * @return id
 	 */
 	public Integer getID() {
-		return id;
+		return idNumber;
 	}
 	
 	/*
