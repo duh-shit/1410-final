@@ -68,7 +68,7 @@ public class addNew extends Person{
 	        }catch(Exception e){return false;}
 	    }
 	    
-	public ArrayList<Person> searchFirstName(ArrayList<Person> fullList, String fName){
+	public static ArrayList<Person> searchFirstName(ArrayList<Person> fullList, String fName){
 		ArrayList<Person> searched = new ArrayList<Person>();
 		for(Person p : fullList){
 			if(p.getFirstName().contains(fName)){
@@ -78,7 +78,7 @@ public class addNew extends Person{
 		return searched;
 	}
 	
-	public ArrayList<Person> searchLastName(ArrayList<Person> fullList, String lName){
+	public static ArrayList<Person> searchLastName(ArrayList<Person> fullList, String lName){
 		ArrayList<Person> searched = new ArrayList<Person>();
 		for(Person p : fullList){
 			if(p.getLastName().contains(lName)){
@@ -88,10 +88,10 @@ public class addNew extends Person{
 		return searched;
 	}
 	
-	public ArrayList<Person> searchSNumber(ArrayList<Person> fullList, Integer sNumber){
+	public static ArrayList<Person> searchSNumber(ArrayList<Person> fullList, String sNumber){
 		ArrayList<Person> searched = new ArrayList<Person>();
 		for(Person p : fullList){
-			if(p.getIDNumber() == sNumber){
+			if(p.getIDNumber().toString().contains(sNumber)){
 				searched.add(p);
 			}
 		}

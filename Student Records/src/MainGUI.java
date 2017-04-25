@@ -41,7 +41,7 @@ public class MainGUI extends JFrame{
 	
 	private static boolean listEditable;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField searchBox;
 	private String[] catagoryHeader = {"S Number", "First", "Last", ""};
 	private String[] searchCatagories = {"By First Name","By Last Name","By S Number"};
 	
@@ -125,14 +125,21 @@ public class MainGUI extends JFrame{
 			btnAddNew = new JButton("Add New");
 			panel.add(btnAddNew);
 			//
-			textField = new JTextField();
-			panel.add(textField);
-			textField.setColumns(25);
+			searchBox = new JTextField();
+			panel.add(searchBox);
+			searchBox.setColumns(25);
 			
 			comboBox = new JComboBox(searchCatagories);
 			panel.add(comboBox);
 			
 			searchButton = new JButton("Search");
+			searchButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					processSearch();
+					
+				}
+			});
 			panel.add(searchButton);
 			btnAddNew.addMouseListener(new MouseAdapter() {
 				@Override
@@ -191,6 +198,26 @@ public class MainGUI extends JFrame{
 			break;
 		}
 		
+	}
+	public void processSearch()
+	{
+		switch(comboBox.getSelectedIndex())
+		{
+		case 0:
+			datao = getFormattedList(addNew.searchFirstName(addNew.students, searchBox.getText()));
+			updateTable();
+			break;
+		case 1:
+			datao = getFormattedList(addNew.searchLastName(addNew.students, searchBox.getText()));
+			updateTable();
+			break;
+		case 2:
+			datao = getFormattedList(addNew.searchSNumber(addNew.students,searchBox.getText()));
+			updateTable();
+			break;
+		default:
+			break;
+		}
 	}
 	
 	/**
