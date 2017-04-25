@@ -1,56 +1,61 @@
 
-public class Student extends Person {
-	/****************************************************************************************
-	 * Fields
-	 *
-	 ****************************************************************************************/
+/**
+ * @authors Gabriel, Ryan Wheeler, Aidan, Daniel Silva, Jose??
+ *
+ */
+public class Student extends Person 
+	{
+	///////////////////////////////////////////////////////////////////////////////////
+	//Attributes
+	///////////////////////////////////////////////////////////////////////////////////
 	private double gpa;
 	
-	
-	/****************************************************************************************
-	 * Constructors
-	 * 
-	 ****************************************************************************************/
+	///////////////////////////////////////////////////////////////////////////////////
+	//Constructors
+	///////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Empty Constructor
 	 * 
 	 */
-	public Student() {
+	public Student() 
+	{
 	super();
 	}
 	
 	/**
-	 * Overloaded constructor
+	 * Overloaded constructor that takes the following parameters and assigns them
+	 * to their corresponding attribute.
 	 * 
 	 * @param fName
 	 * @param lName
 	 * @param courseTitle
 	 * @param gpa
 	 */
-	public Student(String fName, String lName, String courseTitle, double gpa) {
+	public Student(String fName, String lName, String courseTitle, double gpa) 
+	{
 		super(fName, lName, courseTitle);
 		this.gpa = gpa;
 		count++;
 		idNumber += count;
-		//idNumber += count; Change to protected? 
+ 
 	}
 	
-	/*****************************************************************************************
-	 * Methods
-	 * 
-	 *****************************************************************************************/
-	
+	///////////////////////////////////////////////////////////////////////////////////
+	//Methods
+	///////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * @return the gpa
 	 */
-	public double getGpa() {
+	public double getGpa() 
+	{
 		return gpa;
 	}
 	
 	/**
 	 * @param the new gpa
 	 */
-	public void setGpa(double gpa) {
+	public void setGpa(double gpa) 
+	{
 		this.gpa = gpa;
 	}
 
@@ -62,15 +67,5 @@ public class Student extends Person {
 	public String toString() {
 		return String.format("%s Gpa: %.2f", super.toString(), getGpa());
 	}
-	
-	//////////////////////////////////////////////////////////////////////////////////////////////
-	//test
-	//////////////////////////////////////////////////////////////////////////////////////////////
-	public static void main (String[] args) {
-		Student s = new Student("Trevor","Martin", "CSIS1410", 3.0);
-		System.out.print(s.toString());
-	}
-
-
 }
 

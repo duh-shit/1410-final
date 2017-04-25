@@ -1,17 +1,22 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class Teacher extends Person {
+
+/**
+ * @authors Gabriel, Ryan Wheeler, Aidan Hubert, Daniel Silva, Jose??
+ *
+ */
+public class Teacher extends Person 
+{
+	///////////////////////////////////////////////////////////////////////////////////
+	//Constructors
+	///////////////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * Fields
+	 * Empty constructor for teacher object
 	 */
-
-	/**
-	 * Constructors
-	 */
-
-	public Teacher() {
+	public Teacher() 
+	{
 		super();
 	}
 	
@@ -22,11 +27,16 @@ public class Teacher extends Person {
 	 * @param courseTitle
 	 * @param id
 	 */
-	public Teacher(String fName, String lName, String courseTitle, int id) {
+	public Teacher(String fName, String lName, String courseTitle, int id) 
+	{
 		super(fName, lName, courseTitle);
 		this.idNumber = id;
 	}
 	
+	///////////////////////////////////////////////////////////////////////////////////
+	//Methods
+	///////////////////////////////////////////////////////////////////////////////////
+
 	/**
 	 * This method reads in a .dat file that has all of our teacher information recorded on it
 	 * Once the rows are read in the method creates a Teacher object and adds it to the returning
@@ -35,7 +45,8 @@ public class Teacher extends Person {
 	 * @return ArrayList<Person>
 	 * @throws IOException
 	 */
-	public static ArrayList<Person> reader() throws IOException {
+	public static ArrayList<Person> reader() throws IOException 
+	{
 		
 		FileReader pw = new FileReader("src/record/teacherfile.dat");// sets file to be read
 		BufferedReader read = new BufferedReader(pw);// reads file
@@ -67,7 +78,8 @@ public class Teacher extends Person {
 	 * Getter for teacher's ID
 	 * @return id
 	 */
-	public Integer getID() {
+	public Integer getID() 
+	{
 		return idNumber;
 	}
 	
@@ -76,7 +88,8 @@ public class Teacher extends Person {
 	 * @see Person#toString()
 	 */
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		return String.format("%d\n%s %s\n %s\n", getID(), getFirstName(), getLastName(), getCourse());	
 	}
 	
@@ -92,13 +105,6 @@ public class Teacher extends Person {
 	
 
 	
-	public static void main(String[] args) {// used to test to make sure working
-		try {
-			System.out.print(reader());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 
 }

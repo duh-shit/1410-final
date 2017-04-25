@@ -3,17 +3,39 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * @authors Gabriel, Ryan Wheeler, Aidan Hubert, Daniel Silva, Jose??
+ *
+ */
 public class Person {
+	///////////////////////////////////////////////////////////////////////////////////
+	//Attributes
+	///////////////////////////////////////////////////////////////////////////////////
     private String fName;
     private String lName;
     private String courseTitle;
     protected int idNumber;   
     protected static int count = 1234567;
     
+	///////////////////////////////////////////////////////////////////////////////////
+	//Constructors
+	///////////////////////////////////////////////////////////////////////////////////
+    
+    /**
+     * Empty constructor for person object. Assigns idNumber to counter and increments
+     * by 1 after execution.
+     */
     public Person(){
        idNumber = count++;
     }
     
+    /**
+     * Constructor for Person that passes the following parameter and assigns them to
+     * their corresponding fields.
+     * @param fName
+     * @param lName
+     * @param courseTitle
+     */
     public Person(String fName, String lName, String courseTitle) {
        this.fName = fName;
        this.lName = lName;
@@ -21,6 +43,10 @@ public class Person {
      idNumber = count++;
     }
     
+    /**
+     * 
+     * @return First Name 
+     */
    public String getFirstName(){
      return fName;
    }

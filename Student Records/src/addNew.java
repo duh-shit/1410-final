@@ -2,19 +2,41 @@ import java.util.*;
 import java.io.FileWriter;
 import java.io.*;
 
-public class addNew extends Person{
-	Scanner input = new Scanner(System.in);
+/**
+ * @authors Gabriel, Ryan Wheeler, Aidan Hubert, Daniel Silva, Jose??
+ *
+ */
+public class addNew extends Person
+	{
 	
+	///////////////////////////////////////////////////////////////////////////////////
+	//Attributes
+	///////////////////////////////////////////////////////////////////////////////////
+	Scanner input = new Scanner(System.in);
 	public static String fName;
 	public static String lName;
 	public static String gpa;
-	
 	public static ArrayList<Person> students = new ArrayList<Person>();
 	
+	/**
+	 *This is an empty default method of no parameters are specified in the method call.
+	 * @return true or false
+	 */
 	public static boolean addStudent()
 	{
 		return addStudent(students);
 	}
+	
+	/**
+	 * This method writes a file by reading in an ArrayList of Student objects
+	 * from the addStudent() method.
+	 * 
+	 * @param file
+	 * @param arrData
+	 * @return
+	 * @throws IOException
+	 * @see addStudent
+	 */
 	public static boolean addStudent(ArrayList<Person> array){
 //		System.out.print("First Name: ");
 //		input.nextLine();
@@ -67,7 +89,14 @@ public class addNew extends Person{
 	            	return true;
 	        }catch(Exception e){return false;}
 	    }
-	    
+	
+	/**
+	 * This method searches the current database by the firstName field of each object. It utilizes .contains()
+	 * to include partial entries. 
+	 * @param fullList
+	 * @param lName
+	 * @return
+	 */
 	public static ArrayList<Person> searchFirstName(ArrayList<Person> fullList, String fName){
 		ArrayList<Person> searched = new ArrayList<Person>();
 		for(Person p : fullList){
@@ -77,7 +106,14 @@ public class addNew extends Person{
 		}
 		return searched;
 	}
-	
+
+	/**
+	 * This method searches the current database by the lastName field of each object. It utilizes .contains()
+	 * to include partial entries. 
+	 * @param fullList
+	 * @param lName
+	 * @return
+	 */
 	public static ArrayList<Person> searchLastName(ArrayList<Person> fullList, String lName){
 		ArrayList<Person> searched = new ArrayList<Person>();
 		for(Person p : fullList){
@@ -88,6 +124,13 @@ public class addNew extends Person{
 		return searched;
 	}
 	
+	/**
+	 * This method searches the current database by the sNumber lastName field of each object. It utilizes .contains()
+	 * to include partial entries. 
+	 * @param fullList
+	 * @param lName
+	 * @return
+	 */
 	public static ArrayList<Person> searchSNumber(ArrayList<Person> fullList, String sNumber){
 		ArrayList<Person> searched = new ArrayList<Person>();
 		for(Person p : fullList){

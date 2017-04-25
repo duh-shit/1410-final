@@ -37,8 +37,15 @@ import javax.swing.BoxLayout;
 import javax.swing.JTree;
 import javax.swing.JMenuBar;
 
+/**
+ * @authors Gabriel, Ryan Wheeler, Aidan Hubert, Daniel Silva, Jose??
+ *
+ */
 public class MainGUI extends JFrame{
 	
+	///////////////////////////////////////////////////////////////////////////////////
+	//Attributes
+	///////////////////////////////////////////////////////////////////////////////////
 	private static boolean listEditable;
 	private JPanel contentPane;
 	private JTextField searchBox;
