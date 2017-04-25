@@ -42,9 +42,8 @@ public class MainGUI extends JFrame{
 	private static boolean listEditable;
 	private JPanel contentPane;
 	private JTextField searchBox;
-	private String[] catagoryHeader = {"S Number", "First", "Last", ""};
-	private String[] searchCatagories = {"By First Name","By Last Name","By S Number"};
-	
+	private String[] catagoryHeader = {"ID Number", "First", "Last", ""};
+	private String[] searchCatagories = {"By First Name","By Last Name","By ID Number"};
 	private static final JFileChooser fc = new JFileChooser();
 	private File openFile;
 	Object[][] datao;
@@ -57,6 +56,7 @@ public class MainGUI extends JFrame{
 	private JComboBox comboBox;
 	private JButton searchButton;
 	private JButton btnSaveDatabase;
+	private ArrayList<Person> currentList;
 
 	/**
 	 * Launch the application.
@@ -168,23 +168,22 @@ public class MainGUI extends JFrame{
 	 */
 	public void processOption(int n)
 	{
-		ArrayList<Person> people;
 		switch(n)
 		{
 		case 0:
 			try{					
-			people = Person.reader();
+			currentList = Person.reader();
 			}catch(Exception e){break;}
 			catagoryHeader[3] = "GPA";
-			datao = getFormattedList(people);
-			addNew.students = people;
+			datao = getFormattedList(currentList);
+			addNew.students = currentList;			
 			break;
 		case 1:
-			try{	 people = Teacher.reader();
+			try{	 currentList = Teacher.reader();
 			System.out.println("win1");
-			}catch(Exception e){people = null;}
+			}catch(Exception e){currentList = null;}
 			catagoryHeader[3] = "Class";
-			datao = getFormattedList(people);
+			datao = getFormattedList(currentList);
 			break;
 		case 2:
 			//System.exit(0);
@@ -197,27 +196,25 @@ public class MainGUI extends JFrame{
 			datao[0][3] = "";
 			break;
 		}
-		
+		updateTable();
 	}
 	public void processSearch()
 	{
 		switch(comboBox.getSelectedIndex())
 		{
 		case 0:
-			datao = getFormattedList(addNew.searchFirstName(addNew.students, searchBox.getText()));
-			updateTable();
+			datao = getFormattedList(addNew.searchFirstName(currentList, searchBox.getText()));
 			break;
 		case 1:
-			datao = getFormattedList(addNew.searchLastName(addNew.students, searchBox.getText()));
-			updateTable();
+			datao = getFormattedList(addNew.searchLastName(currentList, searchBox.getText()));			
 			break;
 		case 2:
-			datao = getFormattedList(addNew.searchSNumber(addNew.students,searchBox.getText()));
-			updateTable();
+			datao = getFormattedList(addNew.searchSNumber(currentList,searchBox.getText()));			
 			break;
 		default:
 			break;
 		}
+		updateTable();
 	}
 	
 	/**
@@ -274,8 +271,10 @@ public class MainGUI extends JFrame{
 	
 	public void updateTable()
 	{
-		tableModel = new DefaultTableModel(datao,catagoryHeader);
-		table.setModel(tableModel);
+		try{
+			tableModel = new DefaultTableModel(datao,catagoryHeader);
+			table.setModel(tableModel);
+		}catch(NullPointerException e){}
 	}
 	
 	/**

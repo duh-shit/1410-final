@@ -71,7 +71,7 @@ public class addNew extends Person{
 	public static ArrayList<Person> searchFirstName(ArrayList<Person> fullList, String fName){
 		ArrayList<Person> searched = new ArrayList<Person>();
 		for(Person p : fullList){
-			if(p.getFirstName().contains(fName)){
+			if(p.getFirstName().toLowerCase().contains(fName.toLowerCase())){
 				searched.add(p);
 			}
 		}
@@ -81,7 +81,7 @@ public class addNew extends Person{
 	public static ArrayList<Person> searchLastName(ArrayList<Person> fullList, String lName){
 		ArrayList<Person> searched = new ArrayList<Person>();
 		for(Person p : fullList){
-			if(p.getLastName().contains(lName)){
+			if(p.getLastName().toLowerCase().contains(lName.toLowerCase())){
 				searched.add(p);
 			}
 		}
