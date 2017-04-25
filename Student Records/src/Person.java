@@ -7,7 +7,8 @@ import java.util.ArrayList;
  * @authors Gabriel, Ryan Wheeler, Aidan Hubert, Daniel Silva, Jose??
  *
  */
-public class Person {
+public class Person 
+{
 	///////////////////////////////////////////////////////////////////////////////////
 	//Attributes
 	///////////////////////////////////////////////////////////////////////////////////
@@ -25,7 +26,8 @@ public class Person {
      * Empty constructor for person object. Assigns idNumber to counter and increments
      * by 1 after execution.
      */
-    public Person(){
+    public Person()
+    {
        idNumber = count++;
     }
     
@@ -36,35 +38,59 @@ public class Person {
      * @param lName
      * @param courseTitle
      */
-    public Person(String fName, String lName, String courseTitle) {
+    public Person(String fName, String lName, String courseTitle) 
+    {
        this.fName = fName;
        this.lName = lName;
        this.courseTitle = courseTitle;
-     idNumber = count++;
+       idNumber = count++;
     }
     
     /**
      * 
      * @return First Name 
      */
-   public String getFirstName(){
-     return fName;
+   public String getFirstName()
+   {
+	   return fName;
    }
     
-    public String getLastName(){
-       return lName;
-    }
-    
-    public String getCourse() {
-       return courseTitle;
-    }
-    
-    public Integer getIDNumber() {    
-       return idNumber;
-    }
-    
-public static ArrayList<Person> reader() throws IOException {
-		
+   	/**
+   	 * 
+   	 * @return last name 
+   	 */
+   public String getLastName()
+   {
+	   return lName;
+   }
+   
+   /**
+    * 
+    * @return Course title
+    */
+   public String getCourse() 
+   {
+	   return courseTitle;
+   }
+   
+   /**
+    * 
+    * @return ID Number
+    */
+   public Integer getIDNumber() 
+   {    
+	   return idNumber;
+   }
+   
+   /**
+    * This method reads in a database file in .txt or .dat format and adds each
+    * object to an arraylist of Person()s.
+    * @return ArrayList of type Person()
+    * @throws IOException
+    */
+   public static ArrayList<Person> reader() throws IOException 
+   {
+			
 		FileReader pw = new FileReader(MainGUI.openFileChooser());// sets file to be read
 		BufferedReader read = new BufferedReader(pw);// reads file
 		
@@ -81,7 +107,7 @@ public static ArrayList<Person> reader() throws IOException {
 				fName = read.readLine();
 				lName = read.readLine();
 				coarseTitle = read.readLine();
-
+	
 				Person t = new Person(fName, lName, coarseTitle);
 				list.add(t);// adds to Teacher Array
 				
@@ -90,7 +116,11 @@ public static ArrayList<Person> reader() throws IOException {
 		}
 		return list;
 	}
-    
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
    @Override
    public String toString() {  
        return getFirstName() +" " +getLastName() + " " +
@@ -102,5 +132,5 @@ public static ArrayList<Person> reader() throws IOException {
 		return new String[]{getIDNumber().toString(), getFirstName(), getLastName(), getCourse()};
 	}
 
- }
-
+}
+	

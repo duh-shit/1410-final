@@ -41,7 +41,8 @@ import javax.swing.JMenuBar;
  * @authors Gabriel, Ryan Wheeler, Aidan Hubert, Daniel Silva, Jose??
  *
  */
-public class MainGUI extends JFrame{
+public class MainGUI extends JFrame
+{
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	//Attributes
@@ -68,14 +69,19 @@ public class MainGUI extends JFrame{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				try 
+				{
 				
 					MainGUI frame = new MainGUI();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} catch (Exception e) 
+				{
 					e.printStackTrace();
 				}
 			}
@@ -85,7 +91,8 @@ public class MainGUI extends JFrame{
 	/**
 	 * Create the frame.
 	 */
-	public MainGUI(){
+	public MainGUI()
+	{
 		Integer n = openOptionDialog(new JFrame());
 		processOption(n);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -107,10 +114,13 @@ public class MainGUI extends JFrame{
 			panel_1.add(openDatabaseButton, BorderLayout.WEST);
 			
 			btnSaveDatabase = new JButton("Save Database");
-			btnSaveDatabase.addMouseListener(new MouseAdapter() {
+			btnSaveDatabase.addMouseListener(new MouseAdapter() 
+			{
 				@Override
-				public void mouseClicked(MouseEvent arg0) {
-					try {
+				public void mouseClicked(MouseEvent arg0) 
+				{
+					try 
+					{
 						addNew.createFile(openFileChooser().toString(), addNew.students);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -119,7 +129,8 @@ public class MainGUI extends JFrame{
 				}
 			});
 			panel_1.add(btnSaveDatabase, BorderLayout.EAST);
-			openDatabaseButton.addMouseListener(new MouseAdapter() {
+			openDatabaseButton.addMouseListener(new MouseAdapter() 
+			{
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					processOption(openOptionDialog(new JFrame()));
@@ -140,17 +151,21 @@ public class MainGUI extends JFrame{
 			panel.add(comboBox);
 			
 			searchButton = new JButton("Search");
-			searchButton.addMouseListener(new MouseAdapter() {
+			searchButton.addMouseListener(new MouseAdapter() 
+			{
 				@Override
-				public void mouseClicked(MouseEvent arg0) {
+				public void mouseClicked(MouseEvent arg0) 
+				{
 					processSearch();
 					
 				}
 			});
 			panel.add(searchButton);
-			btnAddNew.addMouseListener(new MouseAdapter() {
+			btnAddNew.addMouseListener(new MouseAdapter() 
+			{
 				@Override
-				public void mouseClicked(MouseEvent arg0) {
+				public void mouseClicked(MouseEvent arg0) 
+				{
 					addNew.addStudent();
 					datao = getFormattedList(addNew.students);
 					tableModel = new DefaultTableModel(datao,catagoryHeader);
@@ -178,7 +193,8 @@ public class MainGUI extends JFrame{
 		switch(n)
 		{
 		case 0:
-			try{					
+			try
+			{					
 			currentList = Person.reader();
 			}catch(Exception e){break;}
 			catagoryHeader[3] = "GPA";
@@ -186,7 +202,9 @@ public class MainGUI extends JFrame{
 			addNew.students = currentList;			
 			break;
 		case 1:
-			try{	 currentList = Teacher.reader();
+			try
+			{	 
+			currentList = Teacher.reader();
 			System.out.println("win1");
 			}catch(Exception e){currentList = null;}
 			catagoryHeader[3] = "Class";
@@ -278,7 +296,8 @@ public class MainGUI extends JFrame{
 	
 	public void updateTable()
 	{
-		try{
+		try
+		{
 			tableModel = new DefaultTableModel(datao,catagoryHeader);
 			table.setModel(tableModel);
 		}catch(NullPointerException e){}

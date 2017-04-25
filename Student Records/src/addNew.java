@@ -7,7 +7,7 @@ import java.io.*;
  *
  */
 public class addNew extends Person
-	{
+{
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	//Attributes
@@ -70,11 +70,14 @@ public class addNew extends Person
 	 * @throws IOException
 	 */
 	public static boolean createFile(String file, ArrayList<Person> arrData)
-        throws IOException {
-		try{
+        throws IOException 
+	{
+		try
+		{
 	        FileWriter writer = new FileWriter(file);
 	        int size = arrData.size();
-	        for (int i=0;i<size;i++) {
+	        for (int i=0;i<size;i++) 
+	        {
 //	            String str = arrData.get(i).toString();
 //	            writer.write(str);
 //	            	if(i < size-1)
@@ -97,9 +100,11 @@ public class addNew extends Person
 	 * @param lName
 	 * @return
 	 */
-	public static ArrayList<Person> searchFirstName(ArrayList<Person> fullList, String fName){
+	public static ArrayList<Person> searchFirstName(ArrayList<Person> fullList, String fName)
+	{
 		ArrayList<Person> searched = new ArrayList<Person>();
-		for(Person p : fullList){
+		for(Person p : fullList)
+		{
 			if(p.getFirstName().toLowerCase().contains(fName.toLowerCase())){
 				searched.add(p);
 			}
@@ -114,10 +119,13 @@ public class addNew extends Person
 	 * @param lName
 	 * @return
 	 */
-	public static ArrayList<Person> searchLastName(ArrayList<Person> fullList, String lName){
+	public static ArrayList<Person> searchLastName(ArrayList<Person> fullList, String lName)
+	{
 		ArrayList<Person> searched = new ArrayList<Person>();
-		for(Person p : fullList){
-			if(p.getLastName().toLowerCase().contains(lName.toLowerCase())){
+		for(Person p : fullList)
+		{
+			if(p.getLastName().toLowerCase().contains(lName.toLowerCase()))
+			{
 				searched.add(p);
 			}
 		}
@@ -131,10 +139,13 @@ public class addNew extends Person
 	 * @param lName
 	 * @return
 	 */
-	public static ArrayList<Person> searchSNumber(ArrayList<Person> fullList, String sNumber){
+	public static ArrayList<Person> searchSNumber(ArrayList<Person> fullList, String sNumber)
+	{
 		ArrayList<Person> searched = new ArrayList<Person>();
-		for(Person p : fullList){
-			if(p.getIDNumber().toString().contains(sNumber)){
+		for(Person p : fullList)
+		{
+			if(p.getIDNumber().toString().contains(sNumber))
+			{
 				searched.add(p);
 			}
 		}
@@ -144,7 +155,8 @@ public class addNew extends Person
 	
 
 	@Override
-	public String toString(){
+	public String toString()
+	{
 		return "Student " + fName + " " + lName +
 				" has been added.";
 	}
