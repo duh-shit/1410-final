@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -88,10 +89,10 @@ public class Person
     * @return ArrayList of type Person()
     * @throws IOException
     */
-   public static ArrayList<Person> reader() throws IOException 
+   public static ArrayList<Person> reader(File f) throws IOException 
    {
 			
-		FileReader pw = new FileReader(MainGUI.openFileChooser());// sets file to be read
+		FileReader pw = new FileReader(f);// sets file to be read
 		BufferedReader read = new BufferedReader(pw);// reads file
 		
 		int id = 0;

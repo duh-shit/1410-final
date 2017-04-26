@@ -1,4 +1,8 @@
 import java.util.*;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import java.io.FileWriter;
 import java.io.*;
 
@@ -38,16 +42,6 @@ public class LookupEdit extends Person
 	 * @see addStudent
 	 */
 	public static boolean addStudent(ArrayList<Person> array){
-//		System.out.print("First Name: ");
-//		input.nextLine();
-//		fName = input.nextLine();
-//		System.out.print("Last Name: ");
-//		lName = input.nextLine();
-//		System.out.print("GPA:");
-//		gpa = input.nextLine();
-//		Double.parseDouble(gpa);
-//		System.out.println();
-//		
 		try
 		{
 			fName = MainGUI.openInputField("Please Enter First Name");
@@ -59,7 +53,6 @@ public class LookupEdit extends Person
 		{
 			return false;
 		}
-		
 	}
 	
 	/**
@@ -78,11 +71,7 @@ public class LookupEdit extends Person
 	        int size = arrData.size();
 	        for (int i=0;i<size;i++) 
 	        {
-//	            String str = arrData.get(i).toString();
-//	            writer.write(str);
-//	            	if(i < size-1)
-//	            		writer.write("\n");
-            		//This prevent creating a blank like at the end of the file**
+
 	        	for(String s: arrData.get(i).toStringArray())
 	        	{
 	        		writer.write(s + "\n");
@@ -109,6 +98,11 @@ public class LookupEdit extends Person
 				searched.add(p);
 			}
 		}
+		if(searched.size() <= 0)
+		{
+			JOptionPane.showMessageDialog(new JFrame(), "No Entry Matches The Search Terms");
+			searched.add(new Person("","",""));
+		}
 		return searched;
 	}
 
@@ -129,6 +123,11 @@ public class LookupEdit extends Person
 				searched.add(p);
 			}
 		}
+		if(searched.size() <= 0)
+		{
+			JOptionPane.showMessageDialog(new JFrame(), "No Entry Matches The Search Terms");
+			searched.add(new Person("","",""));
+		}
 		return searched;
 	}
 	
@@ -147,6 +146,11 @@ public class LookupEdit extends Person
 			if(p.getIDNumber().toString().contains(sNumber))
 			{
 				searched.add(p);
+			}
+			if(searched.size() <= 0)
+			{
+				JOptionPane.showMessageDialog(new JFrame(), "No Entry Matches The Search Terms");
+				searched.add(new Person("","",""));
 			}
 		}
 		return searched;

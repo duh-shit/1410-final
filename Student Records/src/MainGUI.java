@@ -74,6 +74,7 @@ public class MainGUI extends JFrame
 	 */
 	public MainGUI()
 	{
+			
 		Integer n = openOptionDialog(new JFrame());
 		processOption(n);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,7 +105,7 @@ public class MainGUI extends JFrame
 					{
 						try 
 						{
-							LookupEdit.createFile(openFileChooser().toString(), LookupEdit.students);
+							LookupEdit.createFile(openFileChooser(true).toString(), LookupEdit.students);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
@@ -183,7 +184,7 @@ public class MainGUI extends JFrame
 		case 0:
 			try
 			{					
-				currentList = Person.reader();
+				currentList = Person.reader(openFileChooser());
 			}catch(Exception e){break;}
 				catagoryHeader[3] = "GPA";
 				datao = getFormattedList(currentList);
@@ -266,15 +267,27 @@ public class MainGUI extends JFrame
 	 * 
 	 * @return
 	 */
-	public static File openFileChooser()
+	public static File openFileChooser(boolean save)
 	{
-		int returnVal = fc.showOpenDialog(new JFrame());
+		int returnVal;
+		if(!save)
+		{
+			returnVal = fc.showOpenDialog(new JFrame());
+			
+		}
+		else
+		{
+			returnVal = fc.showSaveDialog(new JFrame());
+		}
 		if (returnVal == JFileChooser.APPROVE_OPTION) 
             return fc.getSelectedFile();
 		else 
 			return new File("");
 	}
-	
+	public static File openFileChooser()
+	{
+		return openFileChooser(false);
+	}
 	/**
 	 * Creates the input field for the dialog prompt.
 	 * 
