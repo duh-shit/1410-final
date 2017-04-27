@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 
 
 /**
- * @authors Gabriel, Ryan Wheeler, Aidan Hubert, Daniel Silva, Jose??
+ * @authors Gabriel, Ryan Wheeler, Aidan Hubert, Daniel Silva, Jose Zizumbo
  *
  */
 public class MainGUI extends JFrame

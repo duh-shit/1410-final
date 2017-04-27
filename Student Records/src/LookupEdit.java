@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.*;
 
 /**
- * @authors Gabriel, Ryan Wheeler, Aidan Hubert, Daniel Silva, Jose??
+ * @authors Gabriel, Ryan Wheeler, Aidan Hubert, Daniel Silva, Jose Zizumbo
  *
  */
 public class LookupEdit extends Person

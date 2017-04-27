@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * @authors Gabriel, Ryan Wheeler, Aidan Hubert, Daniel Silva, Jose??
+ * @authors Gabriel, Ryan Wheeler, Aidan Hubert, Daniel Silva, Jose Zizumbo
  *
  */
 public class Person 

@@ -1,6 +1,6 @@
 
 /**
- * @authors Gabriel, Ryan Wheeler, Aidan, Daniel Silva, Jose??
+ * @authors Gabriel, Ryan Wheeler, Aidan, Daniel Silva, Jose Zizumbo
  *
  */
 public class Student extends Person 
